@@ -14,7 +14,7 @@ public class UserProducers {
         this.rabbitTemplate = rabbitTemplate;
 }
 
-    @Value(value = "${broker.queue.email.name}")//exchange do tipo default
+    @Value(value = "${broker.queue.email.name}")
     private String routingKey;
 
     public void publishMessageEmail(UserModel userModel){
