@@ -10,6 +10,9 @@ import com.ms.user.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 public class UserService {
     
@@ -28,5 +31,13 @@ public class UserService {
         userRepository.save(userModel);
         userProducers.publishMessageEmail(userModel);
         return userModel;
+    }
+    public List<UserModel> listAllUser() {
+        List<UserModel> users = userRepository.findAll();
+        return users;
+    }
+    public UserModel getUserById(UUID id) {
+        var user = userRepository.findById(id).orElse(null);
+        return user;
     }
 }
